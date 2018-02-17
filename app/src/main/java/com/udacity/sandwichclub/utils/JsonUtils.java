@@ -20,7 +20,7 @@ public class JsonUtils {
 
             ArrayList<String> ingredientsList = getArrayListFromJsonArray(sandwichTotal.getJSONArray("ingredients"));
 
-            return new Sandwich(sandwichName.getString("mainName"),alsoKnownAsList,sandwichTotal.getString("placeOfOrigin"),sandwichTotal.getString("description"),sandwichTotal.getString("image"),ingredientsList);
+            return new Sandwich(sandwichName.optString("mainName"),alsoKnownAsList,sandwichTotal.optString("placeOfOrigin"),sandwichTotal.optString("description"),sandwichTotal.optString("image"),ingredientsList);
         } catch (JSONException e) {
             e.printStackTrace();
         }

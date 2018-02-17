@@ -13,10 +13,21 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 import org.w3c.dom.Text;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
+
+    @BindView(R.id.description_tv) TextView descriptionTv;
+    @BindView(R.id.also_known_as_tv) TextView alsoKnownAsTv;
+    @BindView(R.id.ingredients_tv) TextView ingredientsTv;
+    @BindView(R.id.place_of_origin_tv) TextView placeOfOriginTv;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +71,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void populateUI(Sandwich sandwich) {
-        //Get TextViews By id
-        TextView descriptionTv = findViewById(R.id.description_tv);
-        TextView alsoKnownAsTv = findViewById(R.id.also_known_as_tv);
-        TextView ingredientsTv = findViewById(R.id.ingredients_tv);
-        TextView placeOfOriginTv = findViewById(R.id.place_of_origin_tv);
+        //Bind TextView with butterknife
+        ButterKnife.bind(this);
 
         //Place new line in every text view
         placeNewLine(descriptionTv);
@@ -79,16 +87,12 @@ public class DetailActivity extends AppCompatActivity {
             placeNewLine(alsoKnownAsTv);
         }
 
-
         for(int i = 0;i < sandwich.getIngredients().size();i++) {
             ingredientsTv.append(sandwich.getIngredients().get(i));
             placeNewLine(ingredientsTv);
         }
 
         placeOfOriginTv.append(sandwich.getPlaceOfOrigin());
-
-
-
     }
 
 
